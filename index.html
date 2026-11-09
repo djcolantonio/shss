@@ -397,7 +397,7 @@
 
     @media (max-width: 860px) {
       .wrap { width: min(100% - 34px, 700px); }
-      .nav-links a:not(.contact-link) { display: none; }
+      .nav-links a:not(.contact-link):not(.donate-link) { display: none; }
       .hero { min-height: auto; }
       .hero-grid { grid-template-columns: 1fr; gap: 54px; padding-top: 128px; }
       h1 { max-width: 700px; }
@@ -440,6 +440,38 @@
       html { scroll-behavior: auto; }
       *, *::before, *::after { transition-duration: .01ms !important; }
     }
+    .donate { background: var(--paper); }
+    .give-online {
+      display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between;
+      background: var(--forest-deep); color: #fffdf7; border-radius: 10px; padding: 28px 32px; margin-bottom: 40px;
+    }
+    .give-online[hidden] { display: none; }
+    .give-online h3 { margin: 0 0 4px; font-family: var(--serif); font-size: 1.65rem; font-weight: 500; }
+    .give-online p { margin: 0; color: #dbe4d3; max-width: 560px; }
+    .donate-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 48px; align-items: start; }
+    .needs h3, .donate-form h3 { margin: 0 0 14px; font-family: var(--serif); font-size: 1.65rem; font-weight: 500; }
+    .needs ul { margin: 0 0 22px; padding-left: 1.2em; }
+    .needs li { margin-bottom: 8px; }
+    .needs li::marker { color: var(--clay); }
+    .needs .fine, .form-note { color: var(--muted); font-size: .88rem; margin: 0; }
+    .donate-form {
+      display: grid; gap: 14px; background: var(--surface); border: 1px solid var(--line);
+      border-radius: 10px; padding: 28px; box-shadow: var(--shadow);
+    }
+    .donate-form label { display: grid; gap: 6px; font-size: .85rem; font-weight: 700; }
+    .donate-form input, .donate-form textarea, .donate-form select {
+      font: inherit; font-weight: 400; color: var(--ink); background: var(--paper);
+      border: 1px solid var(--line); border-radius: 6px; padding: 11px 12px; width: 100%;
+    }
+    .donate-form input:focus, .donate-form textarea:focus, .donate-form select:focus { outline: 2px solid var(--sun); outline-offset: 1px; }
+    .donate-form .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .donate-form .check { display: flex; align-items: center; gap: 10px; font-weight: 600; }
+    .donate-form .check input { width: auto; }
+    .donate-form .button { background: var(--forest); color: var(--white); border: 0; cursor: pointer; justify-self: start; }
+    @media (prefers-color-scheme: dark) { .donate-form .button { background: var(--sage); color: #13281f; } }
+    .nav .donate-link { background: var(--sun); color: #173026; padding: 8px 14px; border-radius: 999px; }
+    @media (max-width: 860px) { .donate-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 560px) { .donate-form .form-row { grid-template-columns: 1fr; } .donate-form { padding: 20px; } .nav-links { gap: 12px; } }
   </style>
 </head>
 <body>
@@ -451,6 +483,7 @@
         <a href="#work">Our work</a>
         <a href="#serve">Who we serve</a>
         <a href="#involve">Get involved</a>
+        <a class="donate-link" href="#donate">Donate</a>
         <a class="contact-link" href="#contact">Contact</a>
       </nav>
     </div>
@@ -468,7 +501,7 @@
               Contact us
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
-            <a class="button secondary" href="#work">See our work</a>
+            <a class="button secondary" href="#donate">Donate</a>
           </div>
         </div>
 
@@ -582,6 +615,67 @@
       </div>
     </section>
 
+    <section class="section donate" id="donate" aria-labelledby="donate-title">
+      <div class="wrap">
+        <div class="section-intro">
+          <p class="section-label">Donate</p>
+          <div>
+            <h2 id="donate-title">Help stock a kitchen.</h2>
+            <p>Your donation goes straight to residents of sober-living homes and homeless shelters on Long Island. Tell us what you can give and we’ll arrange a drop-off or pickup.</p>
+          </div>
+        </div>
+
+        <!-- MONEY DONATIONS: paste your donation link (Zeffy, PayPal, Givebutter...) between the quotes in data-url below.
+             The "Give online" box appears automatically once a link is there. Leave it empty to keep it hidden. -->
+        <div class="give-online" id="give-online" data-url="" hidden>
+          <div>
+            <h3>Give online</h3>
+            <p>Make a secure donation by card or bank. Every dollar supports food and financial literacy programs.</p>
+          </div>
+          <a class="button" id="give-online-btn" href="#" target="_blank" rel="noopener">Donate now</a>
+        </div>
+
+        <div class="donate-grid">
+          <div class="needs">
+            <h3>What we need most</h3>
+            <ul>
+              <li>Canned and boxed food: tuna, chicken, beans, soup, pasta, rice, cereal</li>
+              <li>Breakfast items: oatmeal, peanut butter, coffee, shelf-stable milk</li>
+              <li>Fresh food from grocers, bakeries and restaurants (we pick up)</li>
+              <li>Toiletries: soap, shampoo, toothpaste, deodorant, razors</li>
+              <li>Household basics: paper towels, toilet paper, laundry detergent</li>
+              <li>Grocery or pharmacy gift cards</li>
+            </ul>
+            <p class="fine">Please no expired, opened or home-cooked food. Safe Haven Support Services Limited is a 501(c)(3) nonprofit, EIN 42-1906920. Donations are tax-deductible to the extent allowed by law, and we provide a written receipt on request.</p>
+          </div>
+
+          <form class="donate-form" id="donate-form" novalidate>
+            <h3>Offer a donation</h3>
+            <label>Your name<input name="name" required autocomplete="name" /></label>
+            <label>Business or organization (optional)<input name="org" autocomplete="organization" /></label>
+            <div class="form-row">
+              <label>Email<input name="email" type="email" required autocomplete="email" /></label>
+              <label>Phone<input name="phone" type="tel" autocomplete="tel" /></label>
+            </div>
+            <label>What would you like to donate?<textarea name="items" rows="4" required placeholder="e.g., 3 cases of canned vegetables, 20 lbs of rice"></textarea></label>
+            <div class="form-row">
+              <label>Drop-off or pickup?
+                <select name="method">
+                  <option>Drop-off</option>
+                  <option>Pickup, please</option>
+                  <option>Not sure yet</option>
+                </select>
+              </label>
+              <label>Preferred date<input name="date" type="date" /></label>
+            </div>
+            <label class="check"><input name="receipt" type="checkbox" /> I’d like a donation receipt</label>
+            <button class="button" type="submit">Send donation offer</button>
+            <p class="form-note" id="donate-note" aria-live="polite">This opens your email app with your details filled in. You can also email <a href="mailto:info@safehavensupportservicesltd.com">info@safehavensupportservicesltd.com</a>.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
     <section class="contact-section" id="contact" aria-labelledby="contact-title">
       <div class="wrap contact-panel">
         <div class="contact-copy">
@@ -612,5 +706,35 @@
       <p class="ein">EIN 42-1906920</p>
     </div>
   </footer>
+  <script>
+    (function () {
+      var box = document.getElementById('give-online');
+      var url = (box.getAttribute('data-url') || '').trim();
+      if (url) { document.getElementById('give-online-btn').href = url; box.hidden = false; }
+
+      var form = document.getElementById('donate-form');
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var f = form.elements, note = document.getElementById('donate-note');
+        if (!f.name.value.trim() || !f.email.value.trim() || !f.items.value.trim()) {
+          note.textContent = 'Please add your name, email and what you would like to donate.';
+          return;
+        }
+        var body = [
+          'Name: ' + f.name.value,
+          'Organization: ' + (f.org.value || '-'),
+          'Email: ' + f.email.value,
+          'Phone: ' + (f.phone.value || '-'),
+          'Donation: ' + f.items.value,
+          'Drop-off or pickup: ' + f.method.value,
+          'Preferred date: ' + (f.date.value || '-'),
+          'Receipt requested: ' + (f.receipt.checked ? 'Yes' : 'No')
+        ].join('\n');
+        window.location.href = 'mailto:info@safehavensupportservicesltd.com?subject=' +
+          encodeURIComponent('Donation offer from ' + f.name.value) + '&body=' + encodeURIComponent(body);
+        note.textContent = 'Your email app should open now. Press send and we will reply to arrange your donation. Thank you!';
+      });
+    })();
+  </script>
 </body>
 </html>
